@@ -59,7 +59,7 @@ async function welcomeMail(userEmail){
     await verifyTransporter();
 
     let mailOptions = {
-      from: `Prowealth process.env.SMTP_USER`,
+      from: `Prowealth ${process.env.SMTP_USER}`,
       to: `${userEmail}`,
       subject: 'Welcome!',
       html: `
@@ -123,7 +123,7 @@ async function otpMail(userEmail, otp){
   await verifyTransporter();
     
   let mailOptions = {
-    from: `Prowealth process.env.SMTP_USER`,
+    from: `Prowealth ${process.env.SMTP_USER}`,
     to: `${userEmail}`,
     subject: 'Otp!',
     html: `
@@ -191,7 +191,7 @@ async function passwordReset(userEmail){
     await verifyTransporter();
 
     let mailOptions = {
-      from: `Prowealth process.env.SMTP_USER`,
+      from: `Prowealth ${process.env.SMTP_USER}`,
       to: `${userEmail}`,
       subject: 'Password Reset!',
       html: `
@@ -258,7 +258,7 @@ async function alertAdmin(email, amount, date, type){
     await verifyTransporter();
 
     let mailOptions = {
-      from: `Prowealth process.env.SMTP_USER`,
+      from: `Prowealth ${process.env.SMTP_USER}`,
       to: `stormytek@gmail.com`,
       subject: 'Admin Alert!',
       html: `
@@ -323,7 +323,7 @@ async function depositMail(fullName, amount, date, email){
     await verifyTransporter();
 
     let mailOptions = {
-      from: `Prowealth process.env.SMTP_USER`,
+      from: `Prowealth ${process.env.SMTP_USER}`,
       to: `${email}`,
       subject: 'Deposit!',
       html: `
@@ -390,7 +390,7 @@ async function withdrawalMail(fullName, amount, date, email){
     await verifyTransporter();
 
     let mailOptions = {
-      from: `Prowealth process.env.SMTP_USER`,
+      from: `Prowealth ${process.env.SMTP_USER}`,
       to: `${email}`,
       subject: 'Withdrawal!',
       html: `
