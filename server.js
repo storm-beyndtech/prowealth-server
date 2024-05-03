@@ -46,6 +46,6 @@ server.listen(PORT, () => console.log(`Listening on port ${PORT}`));
 
 
 app.get('/', (req, res) => {
-  res.header("Access-Control-Allow-Origin", "*").send('API running 🥳');
+  res.header("Access-Control-Allow-Origin", "*").send('API 💨 🥳');
 });
 
