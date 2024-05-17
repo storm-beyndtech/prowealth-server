@@ -101,7 +101,7 @@ router.put('/:id', async (req, res) => {
   const { email, amount, status } = req.body;
 
   let withdrawal = await Transaction.findById(id);
-  if (!withdrawal) return res.status(404).send({ message: 'Deposit not found' });
+  if (!withdrawal) return res.status(404).send({ message: 'Withdrawal not found' });
 
   let user = await User.findOne({ email });
   if (!user) return res.status(400).send({ message: 'Something went wrong' });
@@ -111,6 +111,7 @@ router.put('/:id', async (req, res) => {
 
     if (status === 'success') {
       user.withdraw += amount;
+      user.deposit -= amount;
     }
 
     user = await user.save()

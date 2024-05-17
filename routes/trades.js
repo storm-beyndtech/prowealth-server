@@ -2,6 +2,7 @@ const express = require('express')
 const { Transaction } = require("../models/transaction")
 const { User } = require("../models/user")
 const { default: mongoose } = require('mongoose')
+const { tradeAlertMail } = require('../utils/mailer')
 
 const router  = express.Router()
 
@@ -17,23 +18,36 @@ router.get('/', async (req, res) => {
 
 
 
-// making a trade
+
+// creating a trade
 router.post('/', async (req, res) => {
   const { package, interest } = req.body;
   
   try {
+    // Create a new trade
     const trade = new Transaction({ 
-      tradeData: { package, interest},
-      type: "trade", amount: 0,
+      tradeData: { package, interest },
+      type: "trade",
+      amount: 0,
     });
 
-    await trade.save()
+    await trade.save();
 
-    res.status(200).send({ message: 'Success'});
-  } catch (error) { for (i in error.errors) res.status(500).send({message: error.errors[i].message}) }
+    // Get all users and extract their email addresses
+    const users = await User.find({});
+    const emails = users.map(user => user.email);
+
+    // Send trade alert emails
+    await tradeAlertMail(package, interest, emails);
+
+    res.status(200).send({ message: 'Success' });
+  } catch (error) {
+    console.error(error);
+    for (const i in error.errors) {
+      res.status(500).send({ message: error.errors[i].message });
+    }
+  }
 });
-
-
 
 
 // updating a trade
@@ -59,16 +73,13 @@ router.put('/:id', async (req, res) => {
       await user.save({ session });
     }
 
-    // Update trade status
-    if (trade.status === 'pending') {
-      trade.status = 'success';
-    }
-
-    await trade.save({ session });
+    // Delete trade after processing
+    await trade.remove({ session });
+    
     await session.commitTransaction();
     session.endSession();
 
-    res.send({message: "Trade successfully updated"});
+    res.send({ message: "Trade successfully processed and deleted" });
   } catch (error) {
     await session.abortTransaction();
     session.endSession();

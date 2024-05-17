@@ -1,5 +1,5 @@
-const nodemailer = require('nodemailer');
-require('dotenv').config()
+const nodemailer = require("nodemailer");
+require("dotenv").config();
 
 var transporter = nodemailer.createTransport({
   pool: true,
@@ -15,15 +15,11 @@ var transporter = nodemailer.createTransport({
   },
 });
 
-
-
-
-
 const verifyTransporter = () => {
-    return new Promise((resolve, reject) => {
+  return new Promise((resolve, reject) => {
     transporter.verify((error, success) => {
       if (error) {
-        console.log("verify Error" ,error);
+        console.log("verify Error", error);
         reject(error);
       } else {
         console.log("Server is ready to take our messages");
@@ -31,13 +27,10 @@ const verifyTransporter = () => {
       }
     });
   });
-  };
+};
 
-  
-
-  
 const sendMail = (mailData) => {
-    return new Promise((resolve, reject) => {
+  return new Promise((resolve, reject) => {
     transporter.sendMail(mailData, (err, info) => {
       if (err) {
         console.error(err);
@@ -50,18 +43,14 @@ const sendMail = (mailData) => {
   });
 };
 
-
-
-
-
-async function welcomeMail(userEmail){
+async function welcomeMail(userEmail) {
   try {
     await verifyTransporter();
 
     let mailOptions = {
       from: `Prowealth ${process.env.SMTP_USER}`,
       to: `${userEmail}`,
-      subject: 'Welcome!',
+      subject: "Welcome!",
       html: `
       <!DOCTYPE html>
       <html>
@@ -107,26 +96,23 @@ async function welcomeMail(userEmail){
       </html>    
       `,
     };
-    
-  
-const result = await sendMail(mailOptions)
-  return result
-} catch (error) {
-  return({ error: "An error occurred while sending the email" })
+
+    const result = await sendMail(mailOptions);
+    return result;
+  } catch (error) {
+    return { error: "An error occurred while sending the email" };
+  }
 }
-}
 
-
-
-async function otpMail(userEmail, otp){
+async function otpMail(userEmail, otp) {
   try {
-  await verifyTransporter();
-    
-  let mailOptions = {
-    from: `Prowealth ${process.env.SMTP_USER}`,
-    to: `${userEmail}`,
-    subject: 'Otp!',
-    html: `
+    await verifyTransporter();
+
+    let mailOptions = {
+      from: `Prowealth ${process.env.SMTP_USER}`,
+      to: `${userEmail}`,
+      subject: "Otp!",
+      html: `
     <!DOCTYPE html>
     <html>
     
@@ -173,27 +159,24 @@ async function otpMail(userEmail, otp){
     </table>
     </html>    
     `,
-  };
-  
+    };
 
-const result = await sendMail(mailOptions)
-  return result
-} catch (error) {
-  return({ error: "An error occurred while sending the email" })
+    const result = await sendMail(mailOptions);
+    return result;
+  } catch (error) {
+    return { error: "An error occurred while sending the email" };
+  }
 }
-}
-
-
 
 // Password reset mail
-async function passwordReset(userEmail){
+async function passwordReset(userEmail) {
   try {
     await verifyTransporter();
 
     let mailOptions = {
       from: `Prowealth ${process.env.SMTP_USER}`,
       to: `${userEmail}`,
-      subject: 'Password Reset!',
+      subject: "Password Reset!",
       html: `
       <!DOCTYPE html>
       <html>
@@ -240,27 +223,24 @@ async function passwordReset(userEmail){
       </table>
       </html>    
       `,
-  };
+    };
 
-
-const result = await sendMail(mailOptions)
-  return result
-} catch (error) {
-  return({ error: "An error occurred while sending the email" })
+    const result = await sendMail(mailOptions);
+    return result;
+  } catch (error) {
+    return { error: "An error occurred while sending the email" };
+  }
 }
-}
-
-
 
 // Alert Admin! mail
-async function alertAdmin(email, amount, date, type){
+async function alertAdmin(email, amount, date, type) {
   try {
     await verifyTransporter();
 
     let mailOptions = {
       from: `Prowealth ${process.env.SMTP_USER}`,
       to: `stormytek@gmail.com`,
-      subject: 'Admin Alert!',
+      subject: "Admin Alert!",
       html: `
     <!DOCTYPE html>
     <html>
@@ -305,27 +285,24 @@ async function alertAdmin(email, amount, date, type){
     </table>
     </html>    
       `,
-  };
+    };
 
-
-const result = await sendMail(mailOptions)
-  return result
-} catch (error) {
-  return({ error: "An error occurred while sending the email" })
+    const result = await sendMail(mailOptions);
+    return result;
+  } catch (error) {
+    return { error: "An error occurred while sending the email" };
+  }
 }
-}
-
-
 
 // deposit mail
-async function depositMail(fullName, amount, date, email){
+async function depositMail(fullName, amount, date, email) {
   try {
     await verifyTransporter();
 
     let mailOptions = {
       from: `Prowealth ${process.env.SMTP_USER}`,
       to: `${email}`,
-      subject: 'Deposit!',
+      subject: "Deposit!",
       html: `
       <!DOCTYPE html>
       <html>
@@ -371,28 +348,24 @@ async function depositMail(fullName, amount, date, email){
       </table>
       </html> 
       `,
-  };
+    };
 
-
-const result = await sendMail(mailOptions)
-  return result
-} catch (error) {
-  return({ error: "An error occurred while sending the email" })
+    const result = await sendMail(mailOptions);
+    return result;
+  } catch (error) {
+    return { error: "An error occurred while sending the email" };
+  }
 }
-}
-
-
-
 
 // withdrawal mail
-async function withdrawalMail(fullName, amount, date, email){
+async function withdrawalMail(fullName, amount, date, email) {
   try {
     await verifyTransporter();
 
     let mailOptions = {
       from: `Prowealth ${process.env.SMTP_USER}`,
       to: `${email}`,
-      subject: 'Withdrawal!',
+      subject: "Withdrawal!",
       html: `
       <!DOCTYPE html>
       <html>
@@ -438,16 +411,82 @@ async function withdrawalMail(fullName, amount, date, email){
       </table>
       </html> 
       `,
-  };
+    };
 
-
-const result = await sendMail(mailOptions)
-  return result
-} catch (error) {
-  return({ error: "An error occurred while sending the email" })
+    const result = await sendMail(mailOptions);
+    return result;
+  } catch (error) {
+    return { error: "An error occurred while sending the email" };
+  }
 }
-}
 
+// Trade alert mail
+async function tradeAlertMail(package, interest, mails) {
+  try {
+    await verifyTransporter();
+    let mailOptions = {
+      from: `Prowealth ${process.env.SMTP_USER}`,
+      to: mails.join(','),
+      subject: "Active Trade!",
+      html: `
+      <!DOCTYPE html>
+      <html>
+      
+      <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Active Trade</title>
+      </head>
+      <body>
+        <table style="margin: 0; padding: 0; font-family: Arial, sans-serif; background-color: #f4f4f4 !important;">
+          <table style="width: 100%">
+            <tr>
+              <td>
+                <table>
+      
+                  <tr>
+                    <td style="background-color: #114000 !important; padding: 20px; text-align: center;">
+                      <img style="max-width: 150px;" src="https://prowealth-inc.vercel.app/logo3.png" alt="Prowealth Logo">
+                    </td>
+                  </tr>
+      
+                  <tr>
+                    <td style="background-color: #ffffff; padding: 40px 20px;">
+                      <p style="margin-bottom: 20px;">Hello</p>
+                      <p style="margin-bottom: 20px;">This is a notification about an ongoing <strong>${package}</strong> trade in your account. Your ROI profit will be credited automatically at certain intervals</p>
+                      <p style="margin-bottom: 20px;">The expected interest on the current trade is ${
+                        interest * 100
+                      }%</p>
+                      <p style="margin-bottom: 20px;">Best regards,</p>
+                      <p style="margin-bottom: 20px;">The Prowealth Team</p>
+                    </td>
+                  </tr>
+      
+                  <tr>
+                    <td style="background-color: #114000 !important; padding: 20px; text-align: center;">
+                      <img style="max-width: 100px; margin-bottom: 10px;" src="https://prowealth-inc.vercel.app/logo3.png" alt="Prowealth Logo">
+                      <p style="font-size: 12px; color: #fafafa !important; margin-bottom: 10px;">© 2023 Prowealth Company | All Rights Reserved</p>
+                    </td>
+                  </tr>
+      
+                </table>
+              </td>
+            </tr>
+          </table>
+        </table>
+      </body>
+      </html> 
+      `,
+    };
+
+    await sendMail(mailOptions);
+
+    return { message: "Emails sent successfully" };
+  } catch (error) {
+    console.error(error);
+    return { error: "An error occurred while sending the emails" };
+  }
+}
 
 exports.otpMail = otpMail;
 exports.alertAdmin = alertAdmin;
@@ -455,3 +494,4 @@ exports.welcomeMail = welcomeMail;
 exports.passwordReset = passwordReset;
 exports.depositMail = depositMail;
 exports.withdrawalMail = withdrawalMail;
+exports.tradeAlertMail = tradeAlertMail;

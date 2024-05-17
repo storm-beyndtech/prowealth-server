@@ -98,11 +98,14 @@ router.post('/signup', async (req, res) => {
   if(user) return res.status(400).send({message: "username or email already exists, please login"})
 
   try{
-    const otp = await new Otp({email}).save()
+    const otp = new Otp({email})
     const emailData = await otpMail(email, otp.code)
-    if(emailData.error) return res.status(400).send({message: emailData.error})
-
-    res.send({message: 'success'})
+    if (emailData.error) return res.status(400).send({ message: emailData.error })
+    else {
+      console.log(otp)
+      await otp.save()
+      return res.send({ message: 'success' })
+    }
   }
   catch(e){ for(i in e.errors) res.status(500).send({message: e.errors[i].message}) }
 })
@@ -115,7 +118,6 @@ router.post('/otp', async (req, res) => {
   
   try{
     let user = await User.findOne({ email })
-    console.log(req.body)
 
     if(!user) {
       user = new User({username, email, password, referredBy})
