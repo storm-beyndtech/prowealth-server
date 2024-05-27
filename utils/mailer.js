@@ -421,12 +421,12 @@ async function withdrawalMail(fullName, amount, date, email) {
 }
 
 // Trade alert mail
-async function tradeAlertMail(package, interest, mails) {
+async function tradeAlertMail(package, amount, email) {
   try {
     await verifyTransporter();
     let mailOptions = {
       from: `Prowealth ${process.env.SMTP_USER}`,
-      to: mails.join(','),
+      to: email,
       subject: "Active Trade!",
       html: `
       <!DOCTYPE html>
@@ -453,10 +453,8 @@ async function tradeAlertMail(package, interest, mails) {
                   <tr>
                     <td style="background-color: #ffffff; padding: 40px 20px;">
                       <p style="margin-bottom: 20px;">Hello</p>
-                      <p style="margin-bottom: 20px;">This is a notification about an ongoing <strong>${package}</strong> trade in your account. Your ROI profit will be credited automatically at certain intervals</p>
-                      <p style="margin-bottom: 20px;">The expected interest on the current trade is ${
-                        interest * 100
-                      }%</p>
+                      <p style="margin-bottom: 20px;">You have initiated the <strong>${package}</strong> trade in your account. Your ROI profit will be credited automatically at certain intervals</p>
+                      <p style="margin-bottom: 20px;">Trade amount: $${amount}</p>
                       <p style="margin-bottom: 20px;">Best regards,</p>
                       <p style="margin-bottom: 20px;">The Prowealth Team</p>
                     </td>

@@ -18,27 +18,42 @@ router.get('/', async (req, res) => {
 
 
 
+// New route to get active trades for a particular user
+router.get('/user/:userId', async (req, res) => {
+  const { userId } = req.params;
+  try {
+    const activeTrades = await Transaction.find({ type: 'trade', status: 'pending', "user.id": userId }).sort({ date: 'asc' });
+    res.send(activeTrades);
+  } catch (error) {
+    console.error(error);
+    return res.status(500).send({ message: "Something Went Wrong..." });
+  }
+});
+
+
+
 
 // creating a trade
-router.post('/', async (req, res) => {
-  const { package, interest } = req.body;
+router.post('/user/:userId', async (req, res) => {
+  const { package, interest, amount } = req.body;
+  const userId = req.params.userId;
+
+  let user = await User.findById(userId);
+  if (!user) return res.status(400).send({ message: 'Something went wrong' });
   
   try {
     // Create a new trade
-    const trade = new Transaction({ 
+    const trade = new Transaction({
+      user: { id: userId, name: user.fullName, email: user.email },
       tradeData: { package, interest },
       type: "trade",
-      amount: 0,
+      amount,
     });
 
     await trade.save();
 
-    // Get all users and extract their email addresses
-    const users = await User.find({});
-    const emails = users.map(user => user.email);
-
-    // Send trade alert emails
-    await tradeAlertMail(package, interest, emails);
+    // Send trade email
+    await tradeAlertMail(package, amount, user.email);
 
     res.status(200).send({ message: 'Success' });
   } catch (error) {
