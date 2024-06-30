@@ -83,7 +83,7 @@ router.put('/:id', async (req, res) => {
     const users = await User.find({ deposit: { $gt: 0 } }).session(session);
     
     for (const user of users) {
-      const calculatedInterest = trade.tradeData.interest * user.deposit;
+      const calculatedInterest = trade.tradeData.interest * trade.tradeData.amount;
       user.interest += calculatedInterest;
       await user.save({ session });
     }
