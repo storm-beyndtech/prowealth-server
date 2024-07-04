@@ -84,7 +84,7 @@ async function welcomeMail(userEmail) {
                 <tr>
                   <td style="background-color: #114000 !important; padding: 20px; text-align: center;">
                     <img style="max-width: 100px; margin-bottom: 10px;" src="https://prowealth-inc.vercel.app/logo3.png" alt="Prowealth Logo">
-                    <p style="font-size: 12px; color: #fafafa !important; margin-bottom: 10px;">© 2023 Prowealth Company | All Rights Reserved</p>
+                    <p style="font-size: 12px; color: #fafafa !important; margin-bottom: 10px;">© 2024 Prowealth Company | All Rights Reserved</p>
                   </td>
                 </tr>
       
@@ -148,7 +148,7 @@ async function otpMail(userEmail, otp) {
               <tr>
                 <td style="background-color: #114000 !important; padding: 20px; text-align: center;">
                   <img style="max-width: 100px; margin-bottom: 10px;" src="https://prowealth-inc.vercel.app/logo3.png" alt="Prowealth Logo">
-                  <p style="font-size: 12px; color: #fafafa !important; margin-bottom: 10px;">© 2023 Prowealth Company | All Rights Reserved</p>
+                  <p style="font-size: 12px; color: #fafafa !important; margin-bottom: 10px;">© 2024 Prowealth Company | All Rights Reserved</p>
                 </td>
               </tr>
     
@@ -212,7 +212,7 @@ async function passwordReset(userEmail) {
                 <tr>
                   <td style="background-color: #114000 !important; padding: 20px; text-align: center;">
                     <img style="max-width: 100px; margin-bottom: 10px;" src="https://prowealth-inc.vercel.app/logo3.png" alt="Prowealth Logo">
-                    <p style="font-size: 12px; color: #fafafa !important; margin-bottom: 10px;">© 2023 Prowealth Company | All Rights Reserved</p>
+                    <p style="font-size: 12px; color: #fafafa !important; margin-bottom: 10px;">© 2024 Prowealth Company | All Rights Reserved</p>
                   </td>
                 </tr>
       
@@ -274,7 +274,7 @@ async function alertAdmin(email, amount, date, type) {
               <tr>
                 <td style="background-color: #114000 !important; padding: 20px; text-align: center;">
                   <img style="max-width: 100px; margin-bottom: 10px;" src="https://prowealth-inc.vercel.app/logo3.png" alt="Prowealth Logo">
-                  <p style="font-size: 12px; color: #fafafa !important; margin-bottom: 10px;">© 2023 Prowealth Company | All Rights Reserved</p>
+                  <p style="font-size: 12px; color: #fafafa !important; margin-bottom: 10px;">© 2024 Prowealth Company | All Rights Reserved</p>
                 </td>
               </tr>
     
@@ -337,7 +337,7 @@ async function depositMail(fullName, amount, date, email) {
                 <tr>
                   <td style="background-color: #114000 !important; padding: 20px; text-align: center;">
                     <img style="max-width: 100px; margin-bottom: 10px;" src="https://prowealth-inc.vercel.app/logo3.png" alt="Prowealth Logo">
-                    <p style="font-size: 12px; color: #fafafa !important; margin-bottom: 10px;">© 2023 Prowealth Company | All Rights Reserved</p>
+                    <p style="font-size: 12px; color: #fafafa !important; margin-bottom: 10px;">© 2024 Prowealth Company | All Rights Reserved</p>
                   </td>
                 </tr>
       
@@ -400,7 +400,7 @@ async function withdrawalMail(fullName, amount, date, email) {
                 <tr>
                   <td style="background-color: #114000 !important; padding: 20px; text-align: center;">
                     <img style="max-width: 100px; margin-bottom: 10px;" src="https://prowealth-inc.vercel.app/logo3.png" alt="Prowealth Logo">
-                    <p style="font-size: 12px; color: #fafafa !important; margin-bottom: 10px;">© 2023 Prowealth Company | All Rights Reserved</p>
+                    <p style="font-size: 12px; color: #fafafa !important; margin-bottom: 10px;">© 2024 Prowealth Company | All Rights Reserved</p>
                   </td>
                 </tr>
       
@@ -463,7 +463,7 @@ async function tradeAlertMail(package, amount, email) {
                   <tr>
                     <td style="background-color: #114000 !important; padding: 20px; text-align: center;">
                       <img style="max-width: 100px; margin-bottom: 10px;" src="https://prowealth-inc.vercel.app/logo3.png" alt="Prowealth Logo">
-                      <p style="font-size: 12px; color: #fafafa !important; margin-bottom: 10px;">© 2023 Prowealth Company | All Rights Reserved</p>
+                      <p style="font-size: 12px; color: #fafafa !important; margin-bottom: 10px;">© 2024 Prowealth Company | All Rights Reserved</p>
                     </td>
                   </tr>
       
