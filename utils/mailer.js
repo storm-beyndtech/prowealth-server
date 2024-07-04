@@ -239,7 +239,7 @@ async function alertAdmin(email, amount, date, type) {
 
     let mailOptions = {
       from: `Prowealth ${process.env.SMTP_USER}`,
-      to: `prowealthx@gmail.com`,
+      to: `${process.env.SMTP_USER}`,
       subject: "Admin Alert!",
       html: `
     <!DOCTYPE html>
