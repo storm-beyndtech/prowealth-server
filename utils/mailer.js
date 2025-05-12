@@ -202,7 +202,7 @@ async function passwordReset(userEmail) {
                   <td style="background-color: #ffffff; padding: 40px 20px;">
                     <p style="margin-bottom: 20px;">Hello</p>
                     <p style="margin-bottom: 20px;">A request was sent for password reset, if this wasn't you please contact our customer service. Click the reset link below to proceed</p>
-                    <a style="max-width: 200px; padding: 15px 30px; border-radius: 30px; background-color: #114000 !important; color: #fafafa !important; text-decoration: none;" href="https://prowealth-inc.com/forgotPassword/newPassword">Reset Password</a>
+                    <a style="max-width: 200px; padding: 15px 30px; border-radius: 30px; background-color: #114000 !important; color: #fafafa !important; text-decoration: none;" href="https://www.prowealth-inc.com/password-reset/newPassword">Reset Password</a>
                     <p style="margin: 20px 0;">If you have any questions or need assistance, feel free to reach out to our support team at support@prowealth-inc.com</p>
                     <p style="margin-bottom: 20px;">Best regards,</p>
                     <p style="margin-bottom: 20px;">The Prowealth Team</p>
